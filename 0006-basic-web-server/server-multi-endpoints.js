@@ -24,6 +24,3 @@ const server = createServer(requestListener);
 server.listen(PORT, HOST, () => {
     console.log(`Server is running on http://${HOST}:${PORT}`);
 });
-
-// hint
-console.log(req);
