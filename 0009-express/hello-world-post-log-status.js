@@ -7,6 +7,8 @@ const logStatus = require('./middlewares/log-status')
 
 app.use(express.urlencoded({extended: false}));
 
+app.use(logStatus);
+
 app.post('/', (req, res) => {
   console.log(req);
   res.send(`id is ${req.body.id}`)
