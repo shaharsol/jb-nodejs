@@ -8,3 +8,7 @@ const logStatus = (req, res, next) => {
 }
 
 module.exports = logStatus;
+
+// hints
+req.method
+res.on('finish', () => {})
