@@ -4,10 +4,12 @@ const util = require('util');
 const connection = mysql.createConnection({
   host: "localhost",
   user: "username",
-  password: "password"
+  password: "password",
+  database: 'mydb',
 });
 
 connection.connect = util.promisify(connection.connect);
+
 (async () => {
   try {
     await connection.connect();
@@ -16,18 +18,6 @@ connection.connect = util.promisify(connection.connect);
     console.log(e);
   }
 })();
-
-
-
-// hints
-const util = require('util');
-someCallbackFunction = util.promisify(someCallbackFunction);
-await someCallbackFunction();
-
-
-
-const mysql = require('mysql2/promise');
-
 
 
 
