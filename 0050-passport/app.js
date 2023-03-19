@@ -46,3 +46,6 @@ app.post('/login', auth.authenticate('local', {
 app.listen(port, host, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+// hint
+req.user // <- this is where passport saves the logged in user record...
