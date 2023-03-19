@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-res.send('Dashboard')
+    res.send('Dashboard')
 })
 
 app.get('/login', (req, res) => {
@@ -44,5 +44,5 @@ app.post('/login', auth.authenticate('local', {
 }));
 
 app.listen(port, host, () => {
-  console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`)
 })
