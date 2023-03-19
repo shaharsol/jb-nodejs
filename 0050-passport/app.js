@@ -3,8 +3,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
 const path = require('path');
-const { passport } = require('./auth');
-console.log(passport);
+const auth = require('./auth');
 const app = express()
 const port = 3000
 const host = 'localhost';
@@ -24,8 +23,8 @@ app.use(session({
     },
   }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(auth.initialize());
+app.use(auth.session());
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -39,7 +38,7 @@ app.get('/login', (req, res) => {
     res.render('index');
 })
 
-app.post('/login', passport.authenticate('local', {
+app.post('/login', auth.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/login',
 }));
