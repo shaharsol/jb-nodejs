@@ -16,11 +16,17 @@ const User = mongoose.model('User', userSchema);
     await mongoose.connect('mongodb://127.0.0.1:27017/mymongo');
     console.log('connected');
 
-    const user = await User.findOne({
+    await User.deleteOne({
         email: 'shahar@johnbryce.co.il',
     })
 
-    console.log(user);
-
+    console.log('deleted, check mongo');
+    
 })()    
 
+// hint
+await Model.deleteOne(filterObj)
+// or
+await Model.deleteMany(filterObj)
+// note
+await instance.remove() // is deprecated
