@@ -9,7 +9,7 @@ type Person = {
 
 const person: Person = {
     name,
-    aStringAge
+    age: aNumberAge
 };
 
 console.log(person);
