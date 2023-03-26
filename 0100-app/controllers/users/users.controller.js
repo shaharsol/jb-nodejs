@@ -10,8 +10,6 @@ const dashboard  = (req, res, next) => {
     res.render('users/dashboard')
 }
 
-
-
 module.exports = {
     addSymbol,
     welcome,
