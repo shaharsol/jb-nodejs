@@ -12,9 +12,32 @@ const util = require('util');
     })
 
     connection.connect = util.promisify(connection.connect);
+    connection.query = util.promisify(connection.query);
 
     await connection.connect();
 
     console.log('connected');
+
+    await connection.query(`
+    CREATE TABLE users (
+        id int auto_increment,
+        username varchar(255) not null,
+        primary key (id)
+      )  
+ 
+    `);
+
+    console.log('created usres table')
+
+    await connection.query(`
+    CREATE TABLE users_symbols (
+        id int auto_increment,
+        user_id int not null,
+        symbol varchar(3) not null,
+        primary key (id)
+      )  
+     `);
+
+    console.log('created users_symbols'); 
 
 })();
