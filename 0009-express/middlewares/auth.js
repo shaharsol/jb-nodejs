@@ -1,4 +1,4 @@
-const auth = (req, res, next) => {
+const auth = (input ) => (req, res, next) => {
     const unauthorized = () => {
         next({
           code: 401,

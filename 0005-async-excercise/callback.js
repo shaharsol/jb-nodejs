@@ -1,6 +1,6 @@
 const howManyCandlesCallback = (dayNumber, callback) => {
     if ( dayNumber < 1 ) {
-        return callback ('day cannot be smaller than 1');
+             callback ('day cannot be smaller than 1');
     }
 
     if ( dayNumber > 8 ) {

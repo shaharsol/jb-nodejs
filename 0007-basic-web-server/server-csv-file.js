@@ -17,7 +17,7 @@ server.listen(PORT, HOST, () => {
 });
 
 
-// hint
-res.setHeader("Content-Disposition", "attachment;filename=johnbryce.csv");
+// // hint
+// res.setHeader("Content-Disposition", "attachment;filename=johnbryce.csv");
 
 
