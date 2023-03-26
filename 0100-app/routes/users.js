@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router()
+const { addSymbol, welcome, dashboard } = require('../controllers/users/users.controller');
+const { addSymbolValidator } = require('../controllers/users/users.validators');
 
-const welcome  = (req, res, next) => {
-    res.render('users/welcome')
-}
+const joi = require('../middlewares/joi');
 
-const dashboard  = (req, res, next) => {
-    res.render('users/dashboard')
-}
 
 router.get('/welcome', welcome);
 router.get('/dashboard', dashboard);
+
+router.post('/symbol', joi(addSymbolValidator), addSymbol);
 
 module.exports = router;
