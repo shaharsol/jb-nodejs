@@ -2,3 +2,17 @@
     <input name="symbol" placeholde="new symbol?">
     <input type="submit" value="add">
 </form>
+
+<table>
+    <tr>
+        <td>Symbol</td>
+        <td>Value</td>
+    </tr>
+    <% userSymbols.forEach((userSymbol) => { %>
+        <tr>
+            <td><%=userSymbol.symbol%></td>
+            <td><%=userSymbol.value%></td>
+        </tr>
+
+    <% }) %>
+</table>
