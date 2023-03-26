@@ -1,9 +1,6 @@
 const express = require('express')
 const path = require('path');
-// const session = require('express-session');
-// const cookieParser = require('cookie-parser');
 
-// const path = require('path');
 const app = express()
 const port = 3000
 const host = 'localhost';
@@ -13,19 +10,6 @@ app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(session({
-//     secret: 'secret',
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//       maxAge: 1000 * 60 * 60 * 24 * 365 * 5,
-//     },
-//   }));
-
-// app.use(auth.initialize());
-// app.use(auth.session());
-
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
