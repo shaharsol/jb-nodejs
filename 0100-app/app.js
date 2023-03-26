@@ -11,9 +11,6 @@ app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
 app.use('/users', usersRouter);
 
