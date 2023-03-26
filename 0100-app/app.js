@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path');
+const usersRouter = require('./routes/users');
 
 const app = express()
 const port = 3000
@@ -13,6 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+app.use('/users', usersRouter);
 
 
 app.listen(port, host, () => {
