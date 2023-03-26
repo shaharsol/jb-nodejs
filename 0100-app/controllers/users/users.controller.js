@@ -7,6 +7,7 @@ const addSymbol = async (req, res, next) => {
             2,
             req.body.symbol,
         ])
+        res.redirect('/users/dashboard');
     } catch (err) {
         next(err);
     }
