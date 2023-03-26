@@ -1,5 +1,9 @@
-const addSymbol = (req, res, next) => {
-    res.send('done');
+const addSymbol = async (req, res, next) => {
+    try {
+
+    } catch (err) {
+        next(err);
+    }
 }
 
 const welcome  = (req, res, next) => {
