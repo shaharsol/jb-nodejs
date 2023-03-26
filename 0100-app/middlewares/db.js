@@ -15,6 +15,7 @@ const pool = mysql.createPool({
 }) 
 
 pool.query = util.promisify(pool.query);
+pool.execute = util.promisify(pool.execute);
 
 module.exports = (req, res, next) => {
     req.db = pool;

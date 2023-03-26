@@ -1,6 +1,12 @@
 const addSymbol = async (req, res, next) => {
     try {
-
+        await req.db.execute(`
+            insert into users_symbols (user_id, symbol)
+            values (?, ?)
+        `,[
+            2,
+            req.body.symbol,
+        ])
     } catch (err) {
         next(err);
     }
