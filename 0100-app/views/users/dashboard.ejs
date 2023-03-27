@@ -1,6 +1,9 @@
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 <script>
     var socket = io();
+    socket.on('update from express', (message) => {
+        updateSymbolValue(message.symbol, message.value);
+    })
 </script>
 
 <form method="POST" action="/users/symbol">
@@ -16,7 +19,7 @@
     <% userSymbols.forEach((userSymbol) => { %>
         <tr>
             <td><%=userSymbol.symbol%></td>
-            <td id="<%= userSymbol.symbol %>-value"><%=symbolValues.find((symbolValue) => symbolValue.symbol === userSymbol.symbol).value%></td>
+            <td id="<%= userSymbol.symbol %>-value"><%=//symbolValues.find((symbolValue) => symbolValue.symbol === userSymbol.symbol).value%></td>
         </tr>
 
     <% }) %>

@@ -21,7 +21,10 @@ app.use('/users', usersRouter);
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-  });
+    socket.on('message from worker', (message) => {
+        io.emit('update from express', message);
+    })
+});
   
 server.listen(port, host, () => {
     console.log(`Example app listening on port ${port}`)

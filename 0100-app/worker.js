@@ -5,6 +5,10 @@ const axios = require('axios');
 const mysql = require('mysql2');
 const util = require('util');
 
+
+const { io } = require('socket.io-client');
+const socket = io(`http://${config.get('app.host')}:${config.get('app.port')}`);
+
 const SymbolValue = require('./models/mongo/SymbolValue');
 const scrape = async (symbol) => {
     try{
@@ -20,6 +24,10 @@ const scrape = async (symbol) => {
             createdAt: new Date()
         });
         await symbolValue.save();
+        await socket.emit('message from worker', {
+            symbol: symbolValue.symbol,
+            value: symbolValue.value,
+        })
         console.log('saved symbolValue', symbolValue);
         return symbolValue;
     
