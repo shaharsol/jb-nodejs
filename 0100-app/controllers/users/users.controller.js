@@ -33,6 +33,7 @@ const dashboard = async (req, res, next) => {
 }
 
 module.exports = {
+    
     addSymbol,
     welcome,
     dashboard,

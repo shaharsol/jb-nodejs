@@ -4,5 +4,10 @@
         "user": "username",
         "password": "password",
         "database": "mydb"
+    },
+    "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "db": "mymongo"
     }
 }
