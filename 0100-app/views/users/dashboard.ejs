@@ -1,3 +1,8 @@
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script>
+    var socket = io();
+</script>
+
 <form method="POST" action="/users/symbol">
     <input name="symbol" placeholde="new symbol?">
     <input type="submit" value="add">
@@ -11,8 +16,14 @@
     <% userSymbols.forEach((userSymbol) => { %>
         <tr>
             <td><%=userSymbol.symbol%></td>
-            <td><%=symbolValues.find((symbolValue) => symbolValue.symbol === userSymbol.symbol).value%></td>
+            <td id="<%= userSymbol.symbol %>-value"><%=symbolValues.find((symbolValue) => symbolValue.symbol === userSymbol.symbol).value%></td>
         </tr>
 
     <% }) %>
 </table>
+
+<script>
+    const updateSymbolValue = (symbol, value) => {
+        document.getElementById(`${symbol}-value`).innerHTML = value; 
+    } 
+</script>

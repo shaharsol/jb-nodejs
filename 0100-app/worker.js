@@ -40,6 +40,7 @@ const loop = async (connection) => {
 
     setTimeout(() => loop(connection), config.get('worker.interval'));
 }
+
 (async () => {
     await mongoose.connect(`mongodb://${config.get('mongo.host')}:${config.get('mongo.port')}/${config.get('mongo.db')}`);
 
