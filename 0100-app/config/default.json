@@ -9,5 +9,8 @@
         "host": "localhost",
         "port": 27017,
         "db": "mymongo"
+    },
+    "worker": {
+        "interval": 10000
     }
 }

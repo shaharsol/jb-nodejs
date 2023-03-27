@@ -23,7 +23,7 @@ const scrape = async (symbol) => {
 
 }
 
-const loop = async () => {
+const loop = async (connection) => {
     const symbols = await connection.query(`
         select distinct symbol from users_symbols 
     `)
@@ -32,7 +32,7 @@ const loop = async () => {
     symbols.forEach(symbol => promises.push(scrape(symbol)));
     await Promise.allSettled(promises);
 
-    setTimeout()
+    setTimeout(() => loop(connection), config.get('worker.interval'));
 }
 (async () => {
     await mongoose.connect(`mongodb://${config.get('mongo.host')}:${config.get('mongo.port')}/${config.get('mongo.db')}`);
@@ -59,7 +59,7 @@ const loop = async () => {
 
     console.log('connected to mysql');
 
-    loop();
+    loop(connection);
 
 
     
