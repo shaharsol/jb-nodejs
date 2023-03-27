@@ -3,6 +3,7 @@ const config = require('config');
 const util = require('util');
 
 (async () => {
+  console.log(__dirname)
 
     const connection = mysql.createConnection({
         host: config.get('mysql.host'),
@@ -21,7 +22,7 @@ const util = require('util');
     await connection.query(`
     CREATE TABLE users (
         id int auto_increment,
-        username varchar(255) not null,
+        github_id varchar(255) not null,
         primary key (id)
       )  
  

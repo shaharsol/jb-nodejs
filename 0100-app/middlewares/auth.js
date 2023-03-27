@@ -26,14 +26,14 @@ passport.use(new GitHubStrategy({
     },
     async (accessToken, refreshToken, profile, done) => {
         try {
-            // in reality we will fetch from db according to email
             let user = await pool.execute(`
-                select * from users where id = ?
-            `, [profile.id] )
+                select * from users where github_id = ?
+            `, [profile.id.toString()] );
+            
             if (!user) {
                 user = await pool.execute(`
-                    insert into users(username) values(?)
-                `, [profile.id] );
+                    insert into users(github_id) values(?)
+                `, [profile.id.toString()] );
             }
 
             return done(null, user);
