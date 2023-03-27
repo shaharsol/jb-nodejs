@@ -11,7 +11,7 @@
     <% userSymbols.forEach((userSymbol) => { %>
         <tr>
             <td><%=userSymbol.symbol%></td>
-            <td><%=userSymbol.value%></td>
+            <td><%=symbolValues.find((symbolValue) => symbolValue.symbol === userSymbol.symbol).value%></td>
         </tr>
 
     <% }) %>
