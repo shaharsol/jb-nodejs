@@ -8,7 +8,7 @@ const pool = mysql.createPool({
     password: config.get('mysql.password'),
     database: config.get('mysql.database'),
     connectionLimit: 10,
-    waitForComnnmections: true,
+    waitForConnections: true,
     maxIdle: 10,
     idleTimeout: 60000,
     queueLimit: 0,
