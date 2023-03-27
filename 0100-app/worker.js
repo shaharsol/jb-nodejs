@@ -14,13 +14,13 @@ const axios = require('axios');
     
     const SymbolValue = mongoose.model('SymbolValue', SymbolValueSchema);
 
-    const html = await axios('https://www.coindesk.com')
+    const html = await axios('https://www.google.com/finance/quote/BTC-USD')
     const $ = cheerio.load(html.data);
-    // console.log($('.typography__StyledTypography-owin6q-0 .iYkMvL .price-values')[0].text());
-
+    const value = $('.YMlKec.fxKbKc').text().replace(',','');
+    
     const symbolValue = new SymbolValue({
         Symbol: 'BTC',
-        value: $('.pclqee').text(),
+        value: parseFloat(value),
         createdAt: new Date()
     });
     await symbolValue.save();
