@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
-let should = chai.should;
+const should = chai.should;
 
 chai.use(chaiHttp);
 
@@ -20,7 +20,8 @@ describe('general', () => {
         .post('/users/symbol')
         .send({symbol: 'BTCCCCCC'})
         .end((err, res) => {
-            res.should.have.status(422)
+            chai.expect(res.statusCode).to.equal(422)
+            // res.should.have.statusCode(422)
         })
     })
 })
