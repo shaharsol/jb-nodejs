@@ -1,14 +1,14 @@
 {
     "mysql": {
-        "host": "localhost",
+        "host": "mysql",
         "user": "username",
         "password": "password",
         "database": "mydb",
         "port": 3306
     },
     "mongo": {
-        "host": "localhost",
-        "port": 27017,
+        "host": "mongo",
+        "port": 27018,
         "db": "mymongo"
     },
     "worker": {
