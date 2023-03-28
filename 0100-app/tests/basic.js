@@ -15,12 +15,12 @@ describe('general', () => {
         })
 
     })
-    // it('should fail when symbol is to long', () => {
-    //     chai.request(server)
-    //     .post('/users/symbol')
-    //     .send({symbol: 'BTCCCCCC'})
-    //     .end((err, res) => {
-    //         res.should.have.status(422)
-    //     })
-    // })
+    it('should fail when symbol is too long', () => {
+        chai.request(server)
+        .post('/users/symbol')
+        .send({symbol: 'BTCCCCCC'})
+        .end((err, res) => {
+            res.should.have.status(422)
+        })
+    })
 })
