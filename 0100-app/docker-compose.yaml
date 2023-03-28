@@ -26,9 +26,9 @@ services:
     environment:
       MONGO_INITDB_DATABASE: mymongo
     ports:
-    - 27018:27018
+    - 27017:27017
     expose:
-      - 27018
+      - 27017
   
   app:
     depends_on:
@@ -48,7 +48,10 @@ services:
       - NODE_ENV=docker
     stdin_open: true
     tty: true
-
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
   worker:
     depends_on:
       app:

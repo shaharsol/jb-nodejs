@@ -12,7 +12,7 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-
+const morgan = require('morgan');
 const port = 3000
 const host = 'localhost';
 
@@ -31,6 +31,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(morgan('combined'));
 
 app.use(cookieParser());
 app.use(session({

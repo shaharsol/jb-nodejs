@@ -8,7 +8,7 @@
     },
     "mongo": {
         "host": "mongo",
-        "port": 27018,
+        "port": 27017,
         "db": "mymongo"
     },
     "worker": {
