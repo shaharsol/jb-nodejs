@@ -15,6 +15,7 @@ const io = new Server(server);
 const morgan = require('morgan');
 const port = 3000
 const host = 'localhost';
+const errorHandler = require('./middlewares/error')
 
 // const MySQLStore = require('express-mysql-session')(session);
 // const mysqlOptions = {
@@ -59,7 +60,10 @@ io.on('connection', (socket) => {
         io.emit('update from express', message);
     })
 });
-  
+
+app.use(errorHandler);
 server.listen(port, host, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+module.exports = app;
