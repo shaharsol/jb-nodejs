@@ -21,9 +21,7 @@ const howManyCandles = async (dayNumber) => {
     });
 }
 
-const main = async () => {
+(async () => {
     const t = await howManyCandles(8);
     console.log(t);
-}
-
-main();
+})();

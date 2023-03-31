@@ -10,17 +10,6 @@ const howManyCandlesCallback = (dayNumber, callback) => {
     return callback ( null, dayNumber + 1 );
 }
 
-const howManyCandles = async (dayNumber) => {
-    return new Promise ((resolve, reject) => {
-        howManyCandlesCallback(dayNumber, (err, result) => {
-            if ( err ) {
-                return reject(err);
-            }
-            return resolve(result);
-        })
-    });
-}
-
 howManyCandlesCallback (9, (err, result) => {
     if (err) {
         return console.log(err)
