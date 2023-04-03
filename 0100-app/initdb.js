@@ -41,6 +41,5 @@ const util = require('util');
      `);
 
     console.log('created users_symbols'); 
-    return;
-
+    process.exit()
 })();

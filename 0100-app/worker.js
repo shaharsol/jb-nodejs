@@ -12,12 +12,10 @@ const socket = io(`http://${config.get('app.host')}:${config.get('app.port')}`);
 const SymbolValue = require('./models/mongo/symbol-value');
 const scrape = async (symbol) => {
     try{
-        console.log(symbol);
         const html = await axios(`https://www.google.com/finance/quote/${symbol.symbol}-USD`)
         const $ = cheerio.load(html.data);
         const value = $('.YMlKec.fxKbKc').text().replace(',','');
         
-        console.log(value);
         const symbolValue = new SymbolValue({
             symbol: symbol.symbol,
             value: parseFloat(value),
@@ -28,7 +26,7 @@ const scrape = async (symbol) => {
             symbol: symbolValue.symbol,
             value: symbolValue.value,
         })
-        console.log('saved symbolValue', symbolValue);
+        console.log(`saved ${symbolValue.value} for ${symbolValue.symbol}`);
         return symbolValue;
     
     } catch (e) {
@@ -41,10 +39,13 @@ const loop = async (connection) => {
     const symbols = await connection.query(`
         select distinct symbol from users_symbols 
     `)
+    console.log (`loop: found this symbol array: ${symbols.join(',')}`)
 
     const promises = [];
     symbols.forEach(symbol => promises.push(scrape(symbol)));
     await Promise.allSettled(promises);
+
+    console.log(`looped through ${symbols.join(',')}. Sleeping for ${config.get('worker.interval')}`)
 
     setTimeout(() => loop(connection), config.get('worker.interval'));
 }
@@ -68,8 +69,6 @@ const loop = async (connection) => {
     console.log('connected to mysql');
 
     loop(connection);
-
-
     
 })();
 
