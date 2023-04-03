@@ -1,6 +1,3 @@
-process.env["NODE_CONFIG_DIR"] = __dirname + "/config/";
-console.log(process.env["NODE_CONFIG_DIR"])
-
 const express = require('express')
 const path = require('path');
 const usersRouter = require('./routes/users');
@@ -18,6 +15,7 @@ const morgan = require('morgan');
 const port = 3000
 const host = 'localhost';
 const errorHandler = require('./middlewares/error')
+const notFoundErrorHandler = require('./middlewares/404')
 
 // const MySQLStore = require('express-mysql-session')(session);
 // const mysqlOptions = {
@@ -61,8 +59,10 @@ io.on('connection', (socket) => {
 });
 
 app.use(errorHandler);
+app.use(notFoundErrorHandler);
+
 server.listen(port, host, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Crypto live rates app listening on port ${port}`)
 })
 
 module.exports = app;
