@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 const config = require('config');
 const util = require('util');
+const { db } = require('../models/mongo/symbol-value');
 
 const pool = mysql.createPool({
     host: config.get('mysql.host'),
@@ -18,7 +19,12 @@ const pool = mysql.createPool({
 pool.query = util.promisify(pool.query);
 pool.execute = util.promisify(pool.execute);
 
-module.exports = (req, res, next) => {
+const middleware = (req, res, next) => {
     req.db = pool;
     return next();
+};
+
+module.exports = {
+    db: pool,
+    middleware,
 }

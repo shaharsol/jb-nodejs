@@ -4,21 +4,8 @@ const GitHubStrategy = require('passport-github2').Strategy;
 const mysql = require('mysql2');
 const util = require('util');
 
-const pool = mysql.createPool({
-    host: config.get('mysql.host'),
-    user: config.get('mysql.user'),
-    password: config.get('mysql.password'),
-    database: config.get('mysql.database'),
-    port: config.get('mysql.port'),
-    connectionLimit: 10,
-    waitForConnections: true,
-    maxIdle: 10,
-    idleTimeout: 60000,
-    queueLimit: 0,
-}) 
-
-pool.query = util.promisify(pool.query);
-pool.execute = util.promisify(pool.execute);
+const { db } = require('./db'); 
+const User = require('../models/mysql/user');
 
 passport.use(new GitHubStrategy({
         clientID: config.get('github.client.id'),
@@ -27,17 +14,18 @@ passport.use(new GitHubStrategy({
     },
     async (accessToken, refreshToken, profile, done) => {
         try {
-            let user = await pool.execute(`
-                select * from users where github_id = ?
-            `, [profile.id.toString()] );
+            const user = new User(db);
+            let authenticatedUser = await user.findByGithubId({
+                githubId: profile.id.toString(),
+            })
             
-            if (!user) {
-                user = await pool.execute(`
-                    insert into users(github_id) values(?)
-                `, [profile.id.toString()] );
+            if (!authenticatedUser) {
+                authenticatedUser = await user.add({
+                    githubId: profile.id.toString(),
+                })
             }
 
-            return done(null, user);
+            return done(null, authenticatedUser);
         } catch (err) {
             return done(err);
         }
