@@ -1,4 +1,4 @@
-const http= require('http');
+const http = require('http');
 
 const HOST = '127.0.0.1';
 const PORT = '8080';
@@ -10,6 +10,6 @@ const requestListener = function (req, res) {
 
 const server = http.createServer(requestListener);
 
-server.listen(PORT, () => {
+server.listen(PORT, HOST, () => {
     console.log(`Server is running on http://${HOST}:${PORT}`);
 });
