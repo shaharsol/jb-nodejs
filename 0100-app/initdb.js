@@ -21,7 +21,7 @@ const util = require('util');
     console.log('connected');
 
     await connection.query(`
-    CREATE TABLE users (
+    CREATE TABLE IF NOT EXISTS users (
         id int auto_increment,
         github_id varchar(255) not null,
         primary key (id)
@@ -32,7 +32,7 @@ const util = require('util');
     console.log('created usres table')
 
     await connection.query(`
-    CREATE TABLE users_symbols (
+    CREATE TABLE IF NOT EXISTS users_symbols (
         id int auto_increment,
         user_id int not null,
         symbol varchar(3) not null,
@@ -41,5 +41,6 @@ const util = require('util');
      `);
 
     console.log('created users_symbols'); 
+    return;
 
 })();

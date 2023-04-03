@@ -4,7 +4,7 @@ class User {
     };
 
     async add ({githubId}) {
-        await this.db.execute(`
+        return this.db.execute(`
             insert into users(github_id) values(?)
         `,[
             githubId,
@@ -16,6 +16,14 @@ class User {
             select * from users where github_id = ?
         `,[
             githubId,
+        ]);    
+    };
+
+    async findByPk ({id}) {
+        return this.db.execute(`
+            select * from users where id = ?
+        `,[
+            id,
         ]);    
     };
     

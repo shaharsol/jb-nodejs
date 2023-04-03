@@ -4,7 +4,7 @@ class UserSymbol {
     };
 
     async add ({userId, symbol}) {
-        await this.db.execute(`
+        return this.db.execute(`
             insert into users_symbols (user_id, symbol)
             values (?, ?)
         `,[

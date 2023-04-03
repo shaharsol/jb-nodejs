@@ -7,7 +7,7 @@ const addSymbol = async (req, res, next) => {
         const userSymbol = new UserSymbol(req.db);
         await userSymbol.add({
             userId: req.user.id,
-            symbol: req.body.sumbol,
+            symbol: req.body.symbol,
         });
         res.redirect('/users/dashboard');
     } catch (err) {
@@ -17,6 +17,16 @@ const addSymbol = async (req, res, next) => {
 
 const welcome  = (req, res, next) => {
     res.render('users/welcome')
+}
+
+const logout  = (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        return res.redirect('/users/welcome');
+    });
+    
 }
 
 const dashboard = async (req, res, next) => {
@@ -44,4 +54,6 @@ module.exports = {
     addSymbol,
     welcome,
     dashboard,
+    logout,
+
 }

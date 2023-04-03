@@ -19,13 +19,17 @@ passport.use(new GitHubStrategy({
                 githubId: profile.id.toString(),
             })
             
-            if (!authenticatedUser) {
-                authenticatedUser = await user.add({
+            if (authenticatedUser.length === 0) {
+                const insert = await user.add({
                     githubId: profile.id.toString(),
+                })
+
+                authenticatedUser = await user.findByPk({
+                    id: insert.insertId,
                 })
             }
 
-            return done(null, authenticatedUser);
+            return done(null, authenticatedUser[0]);
         } catch (err) {
             return done(err);
         }
