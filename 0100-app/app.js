@@ -54,6 +54,7 @@ app.use('/auth/github', githubRouter);
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('message from worker', (message) => {
+        console.log('io: message from worker', message);
         io.emit('update from express', message);
     })
 });
@@ -61,7 +62,7 @@ io.on('connection', (socket) => {
 app.use(errorHandler);
 app.use(notFoundErrorHandler);
 
-server.listen(port, host, () => {
+server.listen(port, () => {
     console.log(`Crypto live rates app listening on port ${port}`)
 })
 

@@ -12,7 +12,11 @@
         "db": "mymongo"
     },
     "worker": {
-        "interval": 10000
+        "interval": 10000,
+        "app": {
+            "host": "app",
+            "port": 3000
+        }
     },
     "app": {
         "host": "localhost",

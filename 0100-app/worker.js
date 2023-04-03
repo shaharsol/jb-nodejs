@@ -7,7 +7,7 @@ const util = require('util');
 
 
 const { io } = require('socket.io-client');
-const socket = io(`http://${config.get('app.host')}:${config.get('app.port')}`);
+const socket = io(`http://${config.get('worker.app.host')}:${config.get('worker.app.port')}`);
 
 const SymbolValue = require('./models/mongo/symbol-value');
 const scrape = async (symbol) => {
