@@ -7,4 +7,4 @@ const mongoose = require('mongoose');
 
 
 // hint
-mongoose.connect('mongodb://127.0.0.1:27017/mymongo')
+// mongoose.connect('mongodb://127.0.0.1:27017/mymongo')

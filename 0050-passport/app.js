@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    res.send('Dashboard')
+    res.send(`Dashboard of ${JSON.stringify(req.user)}`)
 })
 
 app.get('/login', (req, res) => {
@@ -48,4 +48,4 @@ app.listen(port, host, () => {
 })
 
 // hint
-req.user // <- this is where passport saves the logged in user record...
+// req.user // <- this is where passport saves the logged in user record...

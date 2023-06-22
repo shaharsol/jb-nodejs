@@ -7,7 +7,7 @@
 </script>
 
 <form method="POST" action="/users/symbol">
-    <input name="symbol" placeholde="new symbol?">
+    <input name="symbol" placeholder="new symbol?">
     <input type="submit" value="add">
 </form>
 
@@ -19,7 +19,7 @@
     <% userSymbols.forEach((userSymbol) => { %>
         <tr>
             <td><%=userSymbol.symbol%></td>
-            <td id="<%= userSymbol.symbol %>-value"><%=//symbolValues.find((symbolValue) => symbolValue.symbol === userSymbol.symbol).value%></td>
+            <td id="<%= userSymbol.symbol %>-value"><%=symbolValues.find((symbolValue) => symbolValue.symbol === userSymbol.symbol).value%></td>
         </tr>
 
     <% }) %>

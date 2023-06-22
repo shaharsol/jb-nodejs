@@ -35,6 +35,6 @@ connection.query = util.promisify(connection.query);
 
 // hint
 
-connection.query(`
-  some SQL query
-`);
+// connection.query(`
+//   some SQL query
+// `);

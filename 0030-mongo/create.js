@@ -32,7 +32,7 @@ const User = mongoose.model('User', userSchema);
 })()    
 
 // hint
-const instance = new SomeModel(modelData);
-await instance.save();
+// const instance = new SomeModel(modelData);
+// await instance.save();
 
 
