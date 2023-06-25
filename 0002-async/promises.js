@@ -21,17 +21,20 @@ const howManyCandles = async (dayNumber) => {
     });
 }
 
-Promise.all([
-    howManyCandles(1),
-    howManyCandles(2),
-    howManyCandles(3),
-    howManyCandles(4),
-    howManyCandles(5),
-    howManyCandles(6),
-    howManyCandles(7),
-    howManyCandles(8),
-]).then((result) => {
-    console.log(result.reduce((a, b) => (a+b), 0));
-}).catch((err) => {
-    console.log(err);
-})
+const promises = [];
+for (let i=1; i < 9; i++) {
+    promises.push(howManyCandles(i));
+}
+// Promise.all(promises).then((result) => {
+//     console.log(result.reduce((a, b) => (a + b), 0));
+// }).catch((err) => {
+//     console.log(err);
+// })
+
+(async () => {
+    const results = await Promise.all(promises);
+    console.log(results.reduce((a, b) => (a+b), 0));
+})();
+
+
+

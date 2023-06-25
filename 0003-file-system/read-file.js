@@ -1,10 +1,18 @@
 const fs = require('fs');
+const util = require('util');
 
-fs.readFile('content.txt', 'utf8', (err, data) => {
-    if (err) {
-        return console.log(err)
-    }
+const promisified = util.promisify(fs.readFile);
 
-    return console.log(data);
-})
+(async () => {
+    const data = await promisified('content.txt', 'utf8');
+    console.log(data);
+})();
+
+// fs.readFile('content.txt', 'utf8', (err, data) => {
+//     if (err) {
+//         return console.log(err)
+//     }
+
+//     return console.log(data);
+// })
 

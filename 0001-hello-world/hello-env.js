@@ -1,4 +1,2 @@
 // console.log(process);
-console.log(`hello 
-bla bla
-` + process.env.NAME);
+console.log(`hello ${process.env.NAME}`);
