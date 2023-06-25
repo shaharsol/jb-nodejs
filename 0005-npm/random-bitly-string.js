@@ -1,9 +1,14 @@
-const letters = ['a','b','c','d'];
-const rand = Math.round(Math.random(3));
-console.log(letters[rand]);
+const letters = ['a','b','c','d', 'e'];
+
+let ret = '';
+for(i=0; i < 5; i++) {
+    const rand = Math.round(Math.random(3));
+    ret += letters[rand];
+}
+console.log(ret);
 
 // hint
-Math.random()
-Math.round()
+// Math.random()
+// Math.round()
 
 
