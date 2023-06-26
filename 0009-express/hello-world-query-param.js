@@ -4,7 +4,7 @@ const port = 3000
 const host = 'localhost';
 
 app.get('/', (req, res) => {
-  res.send(`query param is ${req.query.id}`)
+  res.send(`query param is ${req.query.user_id}`)
 })
 
 app.listen(port, host, () => {
@@ -13,7 +13,7 @@ app.listen(port, host, () => {
 
 
 // hint
-console.log(req.query)
+// console.log(req.query)
 
 
 

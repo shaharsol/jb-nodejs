@@ -1,4 +1,4 @@
-const server = require('http');
+const { createServer } = require('http');
 
 const HOST = 'localhost';
 const PORT = '8080';
