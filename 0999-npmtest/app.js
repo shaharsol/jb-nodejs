@@ -1,6 +1,7 @@
-const express = require('express')
+const express = require('express');
+const config = require('config');
 const app = express()
-const port = 3000
+const port = config.get('app.port');
 
 const guestsRoute = require('./routes/guests')
 const usersRoute = require('./routes/users')
