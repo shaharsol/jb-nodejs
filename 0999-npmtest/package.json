@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-	"dependencies": {
-		"axios": "*"
-	}
+  "dependencies": {
+    "axios": "*",
+    "express": "^4.18.2"
+  }
 }
