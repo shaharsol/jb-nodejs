@@ -23,7 +23,7 @@ app.get('/users', async (req, res, next) => {
   }
 });
 
-app.get('/users', async (req, res, next) => {
+app.get('/users', (req, res, next) => {
   try {
     const offset = req.query.offset || 0;
     const limit = req.query.limit || 2;
