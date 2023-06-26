@@ -16,8 +16,8 @@ app.post('/raise', (req, res, next) => {
   next('error raised');
 })
 
-app.use(error);
 app.use(notFound);
+app.use(error);
 
 app.listen(port, host, () => {
   console.log(`Example app listening on port ${port}`)
