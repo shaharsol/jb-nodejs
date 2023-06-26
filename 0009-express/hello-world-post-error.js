@@ -13,7 +13,7 @@ app.post('/', (req, res) => {
 })
 
 app.post('/raise', (req, res, next) => {
-  next('error raised');
+  next({error: 'error raised'});
 })
 
 app.use(notFound);

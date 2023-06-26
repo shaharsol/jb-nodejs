@@ -3,13 +3,19 @@ const app = express()
 const port = 3000
 const host = 'localhost';
 
-const logStatus = require('./middlewares/log-status')
+// const logStatus = require('./middlewares/log-status')
 
 app.use(express.urlencoded({extended: false}));
 
-app.post('/', (req, res) => {
+app.post('/', (req, res, next) => {
   console.log(req);
-  res.send(`id is ${req.body.id}`)
+//   res.send(`id is ${req.body.id}`)
+    // next();
+})
+
+app.use((req, res, next) => {
+    console.log('in last middleware');
+    res.send('ended');
 })
 
 app.listen(port, host, () => {

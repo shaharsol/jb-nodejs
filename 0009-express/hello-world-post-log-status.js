@@ -6,13 +6,20 @@ const host = 'localhost';
 const logStatus = require('./middlewares/log-status')
 
 app.use(express.urlencoded({extended: false}));
-
 app.use(logStatus);
 
+
 app.post('/', (req, res) => {
-  console.log(req);
+//   console.log(req);
   res.send(`id is ${req.body.id}`)
 })
+
+
+app.get('/', (req, res) => {
+    //   console.log(req);
+      res.send(`this is a get`)
+    })
+
 
 app.listen(port, host, () => {
   console.log(`Example app listening on port ${port}`)
