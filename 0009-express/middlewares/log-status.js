@@ -9,6 +9,6 @@ const logStatus = (req, res, next) => {
 
 module.exports = logStatus;
 
-// hints
-req.method
-res.on('finish', () => {})
+// // hints
+// req.method
+// res.on('finish', () => {})
