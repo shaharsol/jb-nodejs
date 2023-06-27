@@ -7,11 +7,11 @@
         "secret": "a"
     },
     "mysql": {
-        "host": "a",
-        "user": "a",
-        "password": "a",
-        "database": "a",
-        "port": "a"
+        "host": "localhost",
+        "user": "username",
+        "password": "password",
+        "database": "mydb",
+        "port": 3306
     },
     "mongo": {
         "host": "a",

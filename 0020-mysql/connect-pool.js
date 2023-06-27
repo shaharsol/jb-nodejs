@@ -26,10 +26,10 @@ pool.query = util.promisify(pool.query);
   }
 })();
 
-const tasks = await getTasks();
-res.render('tasks/list', {
-  tasks
-});
+// const tasks = await getTasks();
+// res.render('tasks/list', {
+//   tasks
+// });
 
 
 

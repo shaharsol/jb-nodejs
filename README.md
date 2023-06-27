@@ -5,6 +5,10 @@ https://docs.google.com/presentation/d/1UcQXdrfL5uBWJeC-qyC5xChOs1hL8JvH/edit?us
 
 
 
+# connect to mysql from CLI
+
+mysql --user username --password=password mydb
+
 # docker install on windows
 
 1. Start:
