@@ -8,7 +8,7 @@ const myValidator = joi.object({
 (async() => {
     const obj = {
         name: 'shahar',
-        age: 22
+        age: 17
     };
 
     const validated = await myValidator.validateAsync(obj);

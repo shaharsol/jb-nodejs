@@ -10,6 +10,7 @@ const githubRoute = require('./routes/github')
 const notFound = require('./middlewares/404')
 const error = require('./middlewares/error')
 
+app.use(express.urlencoded({extended: false}));
 app.use('/', guestsRoute);
 app.use('/', usersRoute);
 app.use('/github', githubRoute);
