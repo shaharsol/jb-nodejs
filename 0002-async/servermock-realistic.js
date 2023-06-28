@@ -13,18 +13,18 @@ const howManyCandlesCallback = (dayNumber, callback) => {
     
 };
 
-const howManyCandles = async (dayNumber) => {
-    return new Promise ((resolve, reject) => {
-        howManyCandlesCallback(dayNumber, (err, result) => {
-            if ( err ) {
-                return reject(err);
-            }
-            return resolve(result);
-        })
-    });
-}
+// const howManyCandles = async (dayNumber) => {
+//     return new Promise ((resolve, reject) => {
+//         howManyCandlesCallback(dayNumber, (err, result) => {
+//             if ( err ) {
+//                 return reject(err);
+//             }
+//             return resolve(result);
+//         })
+//     });
+// }
 
-(async () => {
-    const t = await howManyCandles(8);
-    console.log(t);
-})();
+// (async () => {
+//     const t = await howManyCandles(8);
+//     console.log(t);
+// })();
