@@ -2,14 +2,14 @@ const express = require('express');
 router = express.Router();
 
 const authenticate = (req, res, next) => {
-    res.send('ok');
+    res.send('authenticate');
 }
 
 const callback = (req, res, next) => {
-    res.send('ok');
+    res.send('callback');
 }
 
-router.get('/', authenticate);
+router.get('/authenticate', authenticate);
 router.get('/callback', callback);
 
 module.exports = router;
