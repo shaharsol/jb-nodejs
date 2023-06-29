@@ -29,8 +29,8 @@ const scrape = async (symbol) => {
 }
 
 const getSymbols = async () => {
-    const userSymbol = new UserSymbol(db);
-    const symbols = await userSymbol.getDistinct();
+    const symbols = await pool.execute(`select distinct symbol from users_symbols`);
+    // [ { symbol: 'BTC' } ]
     return symbols;
 }
 
@@ -50,17 +50,23 @@ const pool = mysql.createPool({
 pool.query = util.promisify(pool.query);
 pool.execute = util.promisify(pool.execute);
 
+const loop = async () => {
+    const symbols = await pool.execute(`select distinct symbol from users_symbols`);
+    console.log(`will scrape: ${symbols.map(({symbol}) => symbol)}`)
+    const promises = [];
+    symbols.forEach(({symbol}) => {
+        promises.push(scrape(symbol));
+    })
+    await Promise.allSettled(promises);
+    setTimeout(loop, 10000)
+
+}
+
 (async () => {
     try{
         await mongoose.connect('mongodb://127.0.0.1:27017/mymongo');
-
-        const symbols = await pool.execute(`select distinct symbol from users_symbols`);
-        // [ { symbol: 'BTC' } ]
-        console.log(`will scrape: ${symbols.map(({symbol}) => symbol)}`)
-        symbols.forEach(({symbol}) => {
-            setInterval(() => {scrape(symbol)}, 1000)
-        })
-    
+        
+        loop();    
     } catch (err) {
         console.log(err)
     }
