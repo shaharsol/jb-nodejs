@@ -9,6 +9,10 @@ https://docs.google.com/presentation/d/1UcQXdrfL5uBWJeC-qyC5xChOs1hL8JvH/edit?us
 
 mysql --user username --password=password mydb
 
+# passport-github2 example
+
+https://dev.to/joshuajee/nodejs-github-authentication-using-passportjs-and-mongodb-2lfd
+
 # docker install on windows
 
 1. Start:
