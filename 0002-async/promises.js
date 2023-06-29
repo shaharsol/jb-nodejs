@@ -10,7 +10,7 @@ const howManyCandlesCallback = (dayNumber, callback) => {
     return callback ( null, dayNumber + 1 );
 }
 
-const howManyCandles = async (dayNumber) => {
+const howManyCandles = (dayNumber) => {
     return new Promise ((resolve, reject) => {
         howManyCandlesCallback(dayNumber, (err, result) => {
             if ( err ) {
@@ -25,8 +25,9 @@ const promises = [];
 for (let i=1; i < 9; i++) {
     promises.push(howManyCandles(i));
 }
-// Promise.all(promises).then((result) => {
-//     console.log(result.reduce((a, b) => (a + b), 0));
+
+// Promise.all(promises).then((results) => {
+//     console.log(results.reduce((a, b) => (a + b), 0));
 // }).catch((err) => {
 //     console.log(err);
 // })
