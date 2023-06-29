@@ -4,7 +4,6 @@ const HOST = 'localhost';
 const PORT = '8080';
 
 const requestListener = function (req, res) {
-    console.log(req);
     if (req.url === '/name') {
         res.writeHead(200);
         return res.end("name endpoint");
