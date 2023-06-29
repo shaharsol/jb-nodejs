@@ -24,9 +24,9 @@ const User = mongoose.model('User', userSchema);
     
 })()    
 
-// hint
-await Model.deleteOne(filterObj)
-// or
-await Model.deleteMany(filterObj)
-// note
-await instance.remove() // is deprecated
+// // hint
+// await Model.deleteOne(filterObj)
+// // or
+// await Model.deleteMany(filterObj)
+// // note
+// await instance.remove() // is deprecated

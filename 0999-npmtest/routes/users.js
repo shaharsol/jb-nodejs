@@ -2,7 +2,7 @@ const express = require('express');
 const joi = require('../middlewares/joi');
 const mysql = require('../middlewares/mysql');
 const { addSymbolValidator } = require('../controllers/users/validator')
-const UserSymbol = require('../models/mysql/symbol-value') 
+const UserSymbol = require('../models/mysql/user-symbol') 
 
 router = express.Router();
 router.use(mysql);
