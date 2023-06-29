@@ -1,6 +1,7 @@
 {
     "app": {
-        "port": 3000
+        "host": "localhost",
+        "port": 3001
     },
     "github": {
         "clientId": "49c8b296d3208f48a27e",
