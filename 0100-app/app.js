@@ -16,16 +16,17 @@ const port = 3000
 const host = 'localhost';
 const errorHandler = require('./middlewares/error')
 const notFoundErrorHandler = require('./middlewares/404')
+const config = require('config');
 
-// const MySQLStore = require('express-mysql-session')(session);
-// const mysqlOptions = {
-//     host: 'localhost',
-//     port: 3306,
-//     user: 'username',
-//     password: 'password',
-//     database: 'mydb',
-// };
-// const sessionStore = new MySQLStore(mysqlOptions);
+const MySQLStore = require('express-mysql-session')(session);
+const mysqlOptions = {
+    host: config.get('mysql.host'),
+    port: config.get('mysql.port'),
+    user: config.get('mysql.user'),
+    password: config.get('mysql.password'),
+    database: config.get('mysql.database'),
+};
+const sessionStore = new MySQLStore(mysqlOptions);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -36,7 +37,7 @@ app.use(morgan('combined'));
 
 app.use(cookieParser());
 app.use(session({
-    // store: sessionStore,
+    store: sessionStore,
     secret: 'secret',
     resave: false,
     saveUninitialized: false,

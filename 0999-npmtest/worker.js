@@ -53,13 +53,9 @@ pool.execute = util.promisify(pool.execute);
 const loop = async () => {
     const symbols = await pool.execute(`select distinct symbol from users_symbols`);
     console.log(`will scrape: ${symbols.map(({symbol}) => symbol)}`)
-    const promises = [];
-    symbols.forEach(({symbol}) => {
-        promises.push(scrape(symbol));
-    })
+    const promises = symbols.map(({symbol}) => scrape(symbol));
     await Promise.allSettled(promises);
     setTimeout(loop, 10000)
-
 }
 
 (async () => {
