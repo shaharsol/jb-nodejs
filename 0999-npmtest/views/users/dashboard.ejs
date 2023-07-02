@@ -1,0 +1,22 @@
+
+<form method="POST" action="/symbol">
+    <input name="symbol" placeholder="new symbol?">
+    <input type="submit" value="add">
+</form>
+
+<table>
+    <tr>
+        <td>Symbol</td>
+        <td>Value</td>
+    </tr>
+    <% userSymbols.forEach((userSymbol) => { %>
+        <tr>
+            <td><%=userSymbol.symbol%></td>
+            <td id="<%= userSymbol.symbol %>-value"></td>
+        </tr>
+
+    <% }) %>
+</table>
+
+
+<a href="/logout">logout</a>

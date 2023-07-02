@@ -23,4 +23,14 @@ describe('general', () => {
             expect(res.statusCode).to.equal(422)
         })
     })
+    it('should have a link to connect', () => {
+        chai.request(server)
+        .get('/users/welcome')
+        .send()
+        .end((err, res) => {
+            expect(res.statusCode).to.equal(200)
+            expect(res.text).to.contain('Connect')
+        })
+
+    })
 })

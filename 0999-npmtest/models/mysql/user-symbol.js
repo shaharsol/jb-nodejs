@@ -1,5 +1,5 @@
 class UserSymbol {
-    constrcutor (pool) {
+    constructor (pool) {
         this.pool = pool;
     }
 
@@ -16,6 +16,14 @@ class UserSymbol {
             select distinct symbol from users_symbols
         `);
     }
+
+    async findByUserId ({userId}) {
+        return this.pool.execute(`
+            select * from users_symbols where user_id = ?
+        `,[
+            userId,
+        ]);    
+    };
 }
 
 module.exports = UserSymbol;

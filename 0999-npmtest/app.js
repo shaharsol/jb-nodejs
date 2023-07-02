@@ -2,6 +2,7 @@ const express = require('express');
 const config = require('config');
 const app = express()
 const port = config.get('app.port');
+const path = require('path');
 
 const guestsRoute = require('./routes/guests')
 const usersRoute = require('./routes/users')
@@ -12,6 +13,10 @@ const error = require('./middlewares/error')
 const auth = require('./middlewares/auth');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const { middleware: mysql } = require('./middlewares/db');
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -30,6 +35,7 @@ app.use(auth.session());
 
 
 
+app.use(mysql);
 app.use('/', guestsRoute);
 app.use('/', usersRoute);
 app.use('/github', githubRoute);
