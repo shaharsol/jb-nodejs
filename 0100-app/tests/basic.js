@@ -6,30 +6,33 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('general', () => {
-    it('should insert a user_symbol', () => {
+    it('should insert a user_symbol', (done) => {
         chai.request(server)
         .post('/users/symbol')
         .send({symbol: 'BTC'})
         .end((err, res) => {
             expect(res.statusCode).to.equal(200)
+            done()
         })
 
     })
-    it('should fail when symbol is too long', () => {
+    it('should fail when symbol is too long', (done) => {
         chai.request(server)
         .post('/users/symbol')
         .send({symbol: 'BTCCCCCC'})
         .end((err, res) => {
-            expect(res.statusCode).to.equal(422)
+            expect(res.statusCode).to.equal(422);
+            done();
         })
     })
-    it('should have a link to connect', () => {
+    it('should have a link to connect', (done) => {
         chai.request(server)
         .get('/users/welcome')
         .send()
         .end((err, res) => {
             expect(res.statusCode).to.equal(200)
             expect(res.text).to.contain('Connect')
+            done();
         })
 
     })
