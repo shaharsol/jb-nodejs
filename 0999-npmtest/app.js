@@ -36,6 +36,7 @@ app.use(auth.session());
 
 
 app.use(mysql);
+
 app.use('/', guestsRoute);
 app.use('/', usersRoute);
 app.use('/github', githubRoute);
