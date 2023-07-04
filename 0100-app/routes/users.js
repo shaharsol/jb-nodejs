@@ -21,5 +21,6 @@ router.get('/dashboard', enforeAuth, dashboard);
 router.get('/logout', enforeAuth, logout);
 
 router.post('/symbol', enforeAuth, joi(addSymbolValidator), addSymbol);
+router.post('/ticket', enforeAuth, joi(addTicketValidator), addTicket);
 
 module.exports = router;
