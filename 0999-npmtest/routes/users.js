@@ -4,7 +4,7 @@ const { middleware: mysql } = require('../middlewares/db');
 const { addSymbolValidator } = require('../controllers/users/validator')
 const UserSymbol = require('../models/mysql/user-symbol') 
 
-router = express.Router();
+const router = express.Router();
 // router.use(mysql);
 const dashboard = async (req, res, next) => {
     const userSymbol = new UserSymbol(req.db);

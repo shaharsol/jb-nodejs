@@ -3,19 +3,20 @@ const app = express()
 const port = 3000
 const host = 'localhost';
 
-// const logStatus = require('./middlewares/log-status')
+const logStatus = require('./middlewares/log-status')
 
+app.post('*', logStatus);
 app.use(express.urlencoded({extended: false}));
-
-app.post('/', (req, res, next) => {
-  console.log(req);
-//   res.send(`id is ${req.body.id}`)
-    // next();
+app.use(express.json());
+app.use((req, res, next) => {
+    if(req.headers.authorization !== 'Bearer 123') {
+      return res.status(401).end('get away from here');
+    } 
+    next();
 })
 
-app.use((req, res, next) => {
-    console.log('in last middleware');
-    res.send('ended');
+app.post('/', (req, res, next) => {
+  res.send('entered the POST middleware');
 })
 
 app.listen(port, host, () => {

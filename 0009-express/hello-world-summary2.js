@@ -12,14 +12,16 @@ const formatResponse = require('./middlewares/format-response')
 const notFound = require('./middlewares/404')
 const error = require('./middlewares/error')
 
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
+// app.use(express.urlencoded({extended: false}));
+// app.use(express.json());
 
 app.use(auth);
 
-app.use('/users', getUsers);
-app.use('/users', filterUsers);
-app.use('/users', formatResponse);
+app.get('/users', getUsers);
+app.get('/users', filterUsers);
+app.get('/users', formatResponse);
+// app.get('/users', auth, getUsers, filterUsers, formatResponse);
+
 
 app.use(notFound);
 app.use(error);

@@ -7,6 +7,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.delete('/ticket/:id', (req, res) => {
+  res.send(`ticket deleted ${req.params.id}`)
+})
+
 app.listen(port, host, () => {
   console.log(`Example app listening on port ${port}`)
 })
