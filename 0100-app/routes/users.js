@@ -20,6 +20,6 @@ router.get('/welcome', enforceGuest, welcome);
 router.get('/dashboard', enforeAuth, dashboard);
 router.get('/logout', enforeAuth, logout);
 
-router.post('/symbol', joi(addSymbolValidator), addSymbol);
+router.post('/symbol', enforeAuth, joi(addSymbolValidator), addSymbol);
 
 module.exports = router;

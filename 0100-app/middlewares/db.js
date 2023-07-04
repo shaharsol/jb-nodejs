@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 const config = require('config');
 const util = require('util');
-const { db } = require('../models/mongo/symbol-value');
+// const { db } = require('../models/mongo/symbol-value');
 
 const pool = mysql.createPool({
     host: config.get('mysql.host'),
