@@ -7,7 +7,9 @@ const { addSymbol } = require('../controllers/users/controller');
 const { addSymbolValidator } = require('../controllers/users/validator');
 
 router.get('/dashboard', (req, res) => {
-    res.send('dashboard');
+    res.render('dashboard', {
+        username: 'shlomo'
+    });
 })
 
 router.get('/logout', (req, res) => {
