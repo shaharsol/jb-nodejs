@@ -14,13 +14,22 @@ const pool = mysql.createPool({
 });
 
 pool.query = util.promisify(pool.query);
+pool.execute = util.promisify(pool.execute);
 
 (async () => {
   try {
     const result = await pool.query(`
       select * from users;
     `)
-    console.log(result);
+
+    const result2 = await pool.execute(`
+      select * from users where id = ?;
+    `, [
+      6
+    ])
+
+
+    console.log(result2);
   } catch (e) {
     console.log(e);
   }

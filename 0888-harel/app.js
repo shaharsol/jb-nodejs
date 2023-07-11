@@ -2,7 +2,6 @@ const express = require('express');
 const config = require('config');
 const port = config.get('app.port');
 
-console.log(config.get('mysql'))
 // middlewares
 const notFound = require('./middlewares/404')
 const errorHandler = require('./middlewares/error')

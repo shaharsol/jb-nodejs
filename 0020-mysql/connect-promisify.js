@@ -8,13 +8,13 @@ const connection = mysql.createConnection({
   database: 'mydb',
 });
 
-// connection.connect = util.promisify(connection.connect);
-myNewFunc = util.promisify(connection.connect).bind(connection);
+connection.connect = util.promisify(connection.connect);
+// myNewFunc = util.promisify(connection.connect).bind(connection);
 
 (async () => {
   try {
-    // await connection.connect();
-    await myNewFunc();
+    await connection.connect();
+    // await myNewFunc();
     console.log("Connected!");
   } catch (e) {
     console.log(e);

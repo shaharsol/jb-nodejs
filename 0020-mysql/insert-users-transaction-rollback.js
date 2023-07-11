@@ -15,23 +15,24 @@ connection.query = util.promisify(connection.query);
     await connection.connect();
     console.log("Connected!");
 
-    // await connection.query(`start transaction`);
+    await connection.query(`start transaction`);
 
     await connection.query(`
       insert into users (username, password, email, birthday)
       values ('shahar', 'password', 'shahar@johnbryce.co.il', '1975-07-18')
     `);
+    console.log("inserted 1st user!");
 
     await connection.query(`
       insert into users (username, password, email)
       values ('shahar', 'password', 'shahar@johnbryce.co.il')
     `);
 
-    // await connection.query(`commit`);
-    console.log("users inserted!");
+    await connection.query(`commit`);
+    console.log("all users inserted!");
 
   } catch (e) {
-    // await connection.query(`rollback`);
+    await connection.query(`rollback`);
     console.log("rollback");
     console.log(e);
   }
