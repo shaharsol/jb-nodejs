@@ -4,3 +4,11 @@
     <input type="text" name="symbol" id="symbol">
     <button>Add symbol</button>
 </form>
+
+<table>
+    <% userSymbols.forEach((userSymbolRecord) => { %>
+        <tr>
+            <td><%=userSymbolRecord.symbol%></td>
+        </tr>
+    <% }) %>
+</table>

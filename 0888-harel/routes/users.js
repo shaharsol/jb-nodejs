@@ -3,14 +3,10 @@ const router = express.Router();
 
 const inputValidator = require('../middlewares/input-validation')
 
-const { addSymbol } = require('../controllers/users/controller');
+const { addSymbol, dashboard } = require('../controllers/users/controller');
 const { addSymbolValidator } = require('../controllers/users/validator');
 
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard', {
-        username: 'shlomo'
-    });
-})
+router.get('/dashboard', dashboard);
 
 router.get('/logout', (req, res) => {
     res.send('logout');

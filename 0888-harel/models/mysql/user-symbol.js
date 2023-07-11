@@ -14,6 +14,16 @@ class UserSymbol {
         ]);
     }
 
+    getForUser({userId}) {
+        return this.pool.execute(`
+            select * from users_symbols
+            where user_id = ?
+        `, [
+            userId,
+        ]);
+
+    }
+
     retrieve({id}) {
 
     }
