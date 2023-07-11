@@ -14,5 +14,5 @@ services:
     expose:
       - 3306
     restart: unless-stopped
-    volumes:
-      - db:/var/lib/mysql
+    # volumes:
+    #   - db:/var/lib/mysql
