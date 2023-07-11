@@ -4,7 +4,7 @@ class UserSymbol {
         this.pool = pool;
     }
 
-    async create ({userId, symbol}) {
+    create ({userId, symbol}) {
         return this.pool.execute(`
             insert into users_symbols (user_id, symbol)
             values (?, ?)
