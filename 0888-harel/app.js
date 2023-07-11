@@ -11,6 +11,8 @@ const usersRoute = require('./routes/users');
 const githubRoute = require('./routes/github');
 
 const app = express();
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 app.use('/', guestsRoute);
 app.use('/', usersRoute);
