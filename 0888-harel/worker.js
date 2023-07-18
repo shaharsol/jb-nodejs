@@ -25,7 +25,8 @@ const scrape = async({symbol}) => {
         value,
         when: new Date(),
     });
-    await symbolValue.save();
+    const ret = await symbolValue.save();
+    console.log(ret);
     return value;
 }
 
