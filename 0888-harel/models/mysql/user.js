@@ -23,8 +23,13 @@ class User {
 
     }
 
-    retrieve({id}) {
-
+    retrieve(id) {
+        return this.pool.execute(`
+        select * from users
+        where id = ?
+        `, [
+            id,
+        ]);
     }
 
     update({id, userId, symbol}) {

@@ -10,13 +10,22 @@ passport.use(new GithubStrategy({
 }, async (req, accessToken, refreshToken, profile, done) => {
     const user = new User(req.pool);
     let currentUser = await user.getByGithubId(profile.id);    
-    if (currentUser) {
-        return done(null, currentUser);
+    if (currentUser.length > 0) {
+        return done(null, currentUser[0]);
     }
-    currentUser = await user.create({
+    await user.create({
         githubId: profile.id
     })
-    return done(null, currentUser);
+    currentUser = await user.getByGithubId(profile.id);
+    return done(null, currentUser[0]);
 }));
+
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
 
 module.exports = passport;
