@@ -19,28 +19,28 @@ const scrape = async({symbol}) => {
     const result = await axios(`https://www.google.com/finance/quote/${symbol}-USD`);
     const $ = cheerio.load(result.data);
     const value = $('.YMlKec.fxKbKc').text().replace(',','');
+    console.log(`Scraped ${value} for ${symbol}`);
     return value;
 }
 
-
-(async () => {
-
+const cycle = async () => {
     try{
 
         const userSymbol = new UserSymbol(connection);
         const symbols = await userSymbol.getDistinct();
-        // const symbols = [
-        //     'BTC',
-        //     'ETH',
-        //     'BNT'
-        // ]
-        console.log(symbols);
         const promises = symbols.map((symbol => scrape(symbol)));
-        const results = await Promise.all(promises);
-        // console.log(results);
+        const results = await Promise.allSettled(promises);
 
     } catch (err) {
         console.log(err);
+    } finally {
+        setTimeout(cycle, config.get('worker.interval'));
     }
+
+}
+
+(async () => {
+
+    cycle();
 
 })();

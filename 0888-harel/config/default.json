@@ -8,5 +8,8 @@
         "user": "username",
         "password": "password",
         "database": "mydb"
+    },
+    "worker": {
+        "interval": 5000
     }
 }
