@@ -5,6 +5,8 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 const path = require('path');
+const Chance = require('chance');
+const chance = new Chance();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -15,8 +17,13 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
-  io.emit('my custom event',{name: 'admin'});
+  const id = chance.string({
+    length: 5,
+    pool: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  });
+  console.log(`a user connected: ${id}`);
+  socket.emit('new user joined',{id: 'welcome'})
+  io.emit('new user joined',{id});
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });

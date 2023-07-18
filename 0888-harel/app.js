@@ -14,8 +14,13 @@ const mysql = require('./middlewares/mysql')
 const guestsRoute = require('./routes/guests');
 const usersRoute = require('./routes/users');
 const githubRoute = require('./routes/github');
+const http = require('http');
+const { Server } = require('socket.io');
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -31,7 +36,7 @@ app.use('/github', githubRoute);
 app.use(errorHandler);
 app.use(notFound);
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
   

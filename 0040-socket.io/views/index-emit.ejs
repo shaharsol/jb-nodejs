@@ -3,8 +3,8 @@
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
       var socket = io();
-      socket.on('my custom event', function(msg) {
-        document.getElementById('main').innerHTML = msg.name;
+      socket.on('new user joined', function(msg) {
+        document.getElementById('main').innerHTML += ' ' + msg.id;
       });
     </script>
   </head>
