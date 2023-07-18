@@ -14,6 +14,7 @@ const mysql = require('./middlewares/mysql')
 const guestsRoute = require('./routes/guests');
 const usersRoute = require('./routes/users');
 const githubRoute = require('./routes/github');
+
 const http = require('http');
 const { Server } = require('socket.io');
 
@@ -21,6 +22,15 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+io.on('connection', (socket) => {
+    console.log(`a user connected`);
+    socket.on('update from worker', (msg) => {
+        io.emit('symbol value update', msg);
+    })
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

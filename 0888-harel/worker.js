@@ -11,6 +11,10 @@ const mongoose = require('mongoose');
 const UserSymbol = require('./models/mysql/user-symbol');
 const SymbolValue = require('./models/mongo/symbol-value');
 
+const { io } = require('socket.io-client');
+// const socket = io(`http://${config.get('app.host')}:${config.get('app.port')}`);
+const socket = io(`http://localhost:3000`);
+
 // MySQL initialization
 const connection = mysql.createConnection(config.get('mysql'));
 connection.connect = util.promisify(connection.connect);
@@ -27,6 +31,10 @@ const scrape = async({symbol}) => {
         when: new Date(),
     });
     const ret = await symbolValue.save();
+    socket.emit('update from worker', {
+        symbol: symbolValue.symbol,
+        value: symbolValue.value,
+    });
     return value;
 }
 
