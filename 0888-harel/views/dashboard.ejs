@@ -9,6 +9,7 @@
     <% userSymbols.forEach((userSymbolRecord) => { %>
         <tr>
             <td><%=userSymbolRecord.symbol%></td>
+            <td><%=symbolValues.find((symbolValue) => symbolValue.symbol === userSymbolRecord.symbol).value  %></td>
         </tr>
     <% }) %>
 </table>

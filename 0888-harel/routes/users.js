@@ -1,10 +1,12 @@
 const express = require('express');
-const router = express.Router();
-
 const inputValidator = require('../middlewares/input-validation')
-
+const mongo = require('../middlewares/mongo')
 const { addSymbol, dashboard } = require('../controllers/users/controller');
 const { addSymbolValidator } = require('../controllers/users/validator');
+
+// here we start the middleware chain for this router
+const router = express.Router();
+router.use(mongo);
 
 router.get('/dashboard', dashboard);
 
