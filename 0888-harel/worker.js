@@ -1,4 +1,5 @@
-process.env.SUPPRESS_NO_CONFIG_WARNING = true;
+process.env["NODE_CONFIG_DIR"] = __dirname + "/config/";
+
 const axios = require('axios');
 const cheerio = require('cheerio');
 
@@ -26,7 +27,6 @@ const scrape = async({symbol}) => {
         when: new Date(),
     });
     const ret = await symbolValue.save();
-    console.log(ret);
     return value;
 }
 
