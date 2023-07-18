@@ -4,11 +4,14 @@ const express = require('express');
 const config = require('config');
 const port = config.get('app.port');
 const path = require('path');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 // middlewares
 const notFound = require('./middlewares/404')
 const errorHandler = require('./middlewares/error')
 const mysql = require('./middlewares/mysql')
+const auth = require('./middlewares/auth')
 
 // 
 const guestsRoute = require('./routes/guests');
@@ -34,6 +37,20 @@ io.on('connection', (socket) => {
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(cookieParser());
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 365 * 5,
+    },
+  }));
+
+app.use(auth.initialize());
+app.use(auth.session());
+
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());

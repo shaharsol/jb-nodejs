@@ -16,5 +16,10 @@
         "host": "127.0.0.1",
         "port": "27017",
         "database": "mymongo"
+    },
+    "github": {
+        "clientID": "aee34fe37c462cf8813c",
+        "clientSecret": "878aa0f198aad6cd3b3e4c26e1bfd2aa06536381",
+        "callback": "http://localhost:3000/github/callback"
     }
 }

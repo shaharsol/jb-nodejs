@@ -31,11 +31,24 @@ app.get('/', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
+    if(!req.user) {
+      res.redirect('/login');
+    }
     res.send(`Dashboard of ${JSON.stringify(req.user)}`)
 })
 
 app.get('/login', (req, res) => {
+    if(req.user) {
+      res.redirect('/dashboard');
+    }
     res.render('index');
+})
+
+app.get('/logout', (req, res) => {
+  if(req.user) {
+    req.logout();
+  }
+  res.redirect('/login');
 })
 
 app.post('/login', auth.authenticate('local', {

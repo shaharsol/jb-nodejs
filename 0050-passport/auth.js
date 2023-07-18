@@ -7,18 +7,19 @@ passport.use(new LocalStrategy({
     },
     async (email, password, done) => {
         try {
+
             // in reality we will fetch from db according to email
             const user = {
                 email: 'shahar@johnbryce.co.il',
                 password: '12345678',
             }
             if (!user) {
-                return done(null, false, { message: 'Incorrect username/password.' });
+                return done(null, false, { message: 'Unknown email.' });
             }
 
             // in reality we'll compare hashed+salted password to saved hashed+salted password
             if (user.password !== password) { 
-                return done(null, false, { message: 'Incorrect username/password.' });
+                return done(null, false, { message: 'Incorrect password.' });
             }
             return done(null, user);
         } catch (err) {

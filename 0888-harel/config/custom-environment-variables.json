@@ -1,5 +1,8 @@
 {
     "mysql": {
         "password": "MYSQL_PASSWORD"
+    },
+    "github": {
+        "clientSecret": "GITHUB_CLIENT_SECRET"
     }
 }
