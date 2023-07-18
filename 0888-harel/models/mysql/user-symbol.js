@@ -35,6 +35,12 @@ class UserSymbol {
     delete({id}) {
         
     }
+
+    getDistinct() {
+        return this.pool.query(`
+            select distinct symbol from users_symbols
+        `);
+    }
 }
 
 module.exports = UserSymbol;
