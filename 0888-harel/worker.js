@@ -12,8 +12,8 @@ const UserSymbol = require('./models/mysql/user-symbol');
 const SymbolValue = require('./models/mongo/symbol-value');
 
 const { io } = require('socket.io-client');
-// const socket = io(`http://${config.get('app.host')}:${config.get('app.port')}`);
-const socket = io(`http://localhost:3000`);
+const socket = io(`http://${config.get('worker.io.host')}:${config.get('worker.io.port')}`);
+// const socket = io(`http://localhost:3000`);
 
 // MySQL initialization
 const connection = mysql.createConnection(config.get('mysql'));

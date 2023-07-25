@@ -10,7 +10,11 @@
         "database": "mydb"
     },
     "worker": {
-        "interval": 5000
+        "interval": 5000,
+        "io": {
+            "host": "localhost",
+            "port": "3000"
+        }
     },
     "mongo": {
         "host": "127.0.0.1",
