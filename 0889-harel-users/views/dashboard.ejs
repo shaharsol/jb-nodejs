@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+        <script>
+            var socket = io();
+            socket.on('symbol value update', (msg) => {
+                document.getElementById(`td-${msg.symbol}`).innerText = msg.value;
+            });
+        </script>
+    </head>
+    <body>
+        <p>hello <%=username%></p>
+        <p><a href="/logout">logout</a></p>
+        <form action="/symbol" method="POST">
+            <label for="symbol">please add a symbol</label>
+            <input type="text" name="symbol" id="symbol">
+            <button>Add symbol</button>
+        </form>
+        
+        <table>
+            <% userSymbols.forEach((userSymbolRecord) => { %>
+                <tr>
+                    <td><%=userSymbolRecord.symbol%></td>
+                    <td id="td-<%=userSymbolRecord.symbol%>"><%=symbolValues.find((symbolValue) => symbolValue.symbol === userSymbolRecord.symbol)?.value  %></td>
+                </tr>
+            <% }) %>
+        </table>
+        
+    </body>
+</html>
