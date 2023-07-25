@@ -9,5 +9,8 @@
         "io": {
             "host": "app"
         }
+    },
+    "usersService": {
+        "host": "host.docker.internal"
     }
 }

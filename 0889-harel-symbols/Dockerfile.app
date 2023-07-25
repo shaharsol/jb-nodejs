@@ -4,4 +4,5 @@ WORKDIR ./
 COPY package.json .
 RUN npm install
 COPY . .
-CMD node worker.js
+EXPOSE 3000
+CMD node app.js

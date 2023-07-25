@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_DATABASE: mymongo
+    ports:
+    - 27017:27017
+    expose:
+      - 27017
+  
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.app
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=docker
+    stdin_open: true
+    tty: true
+    expose:
+      - 3001
+    ports:
+      - 3001:3001
+  
+  worker:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.worker
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=docker
+    stdin_open: true
+    tty: true
+
+volumes: 
+  db:

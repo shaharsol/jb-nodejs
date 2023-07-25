@@ -2,12 +2,8 @@
     "mysql": {
         "host": "mysql"
     },
-    "mongo": {
-        "host": "mongo"
-    },
-    "worker": {
-        "io": {
-            "host": "app"
-        }
+    "usersSymbolsService": {
+        "host": "host.docker.internal"
     }
+
 }
