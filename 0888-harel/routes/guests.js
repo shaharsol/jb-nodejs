@@ -4,7 +4,7 @@ const enforceGuest = require('../middlewares/enforce-guest')
 
 // router.use(enforceGuest);
 
-router.get('/welcome', (req, res) => {
+router.get('/welcome', enforceGuest, (req, res) => {
     res.render('welcome', {});
 })
 
